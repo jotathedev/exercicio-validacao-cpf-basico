@@ -11,7 +11,7 @@ function handleError(error) {
 }
 
 function unformatCPF(formattedCPF) {
-    if (formattedCPF.includes(/^\d+$/)) return formattedCPF;
+    if (formattedCPF.match(/^\d+$/)) return formattedCPF;
 
     const unformattedCPF = formattedCPF.replaceAll('.', '').replace('-', '');
     return unformattedCPF;
@@ -28,13 +28,17 @@ function isCpfEntryValid(cpf) {
     if (cpf.trim().length === 0 || !cpf) {
         return SyntaxError("O CPF é um campo obrigatório!");
     };
-
-    return cpf;
 }
+
+
+
 function isCPFvalid(cpf) {
     try {
-        isCpfEntryValid(cpf);
-        const unformattedCPF = unformatCPF(cpf);
+        const cpfEntryValid = isCpfEntryValid(cpf);
+        if (!cpfEntryValid) {
+            const unformattedCPF = unformatCPF(cpf);
+            console.log(unformattedCPF);
+        }
         
 
 
@@ -42,3 +46,5 @@ function isCPFvalid(cpf) {
         handleError(error);
     }
 }
+
+isCPFvalid("084.548.974-99");
