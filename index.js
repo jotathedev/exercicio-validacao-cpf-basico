@@ -19,14 +19,14 @@ function unformatCPF(formattedCPF) {
 
 function isCpfEntryValid(cpf) {
     if (typeof cpf !== 'string') {
-        return TypeError("O CPF deve ser uma string válida!");
+        throw TypeError("O CPF deve ser uma string válida!");
     };
     if (cpf.trim().length > 14) {
-        return RangeError("O CPF deve ter no máximo 14 caracteres incluindo os especiais '.' e '-'!");
+        throw RangeError("O CPF deve ter no máximo 14 caracteres incluindo os especiais '.' e '-'!");
     };
 
     if (cpf.trim().length === 0 || !cpf) {
-        return SyntaxError("O CPF é um campo obrigatório!");
+        throw SyntaxError("O CPF é um campo obrigatório!");
     };
 }
 
@@ -47,4 +47,4 @@ function isCPFvalid(cpf) {
     }
 }
 
-isCPFvalid("084.548.974-99");
+isCPFvalid("084.548.973-99");
