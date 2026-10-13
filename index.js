@@ -30,6 +30,13 @@ function isCpfEntryValid(cpf) {
     };
 }
 
+function isSequence(unformattedCpf) {
+    const sequenceExample = unformattedCpf[0].repeat(unformattedCpf.length);
+    if (sequenceExample === unformattedCpf) {
+        throw new SyntaxError("Segundo a receita federal, CPFs montados por sequência são inválidos!");
+    };
+}
+
 function cutCpf(cpf, limit) {
     return cpf.slice(0, limit);
 }
@@ -67,6 +74,7 @@ function isCpfValid(cpf) {
             isCpfEntryValid(cpf);
         
             const unformattedCPF = unformatCpf(cpf);
+            isSequence(unformattedCPF);
             const cpfWithFirstNineDigits = cutCpf(unformattedCPF, 9);
             const separatedCpfToArray = cpfWithFirstNineDigits.split("");
 
