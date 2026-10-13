@@ -98,5 +98,3 @@ function isCpfValid(cpf) {
         handleError(error);
     }
 }
-
-isCpfValid("084.548.973-99");
